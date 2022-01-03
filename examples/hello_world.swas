@@ -1,0 +1,2 @@
+world = "Hello, World!"
+output world

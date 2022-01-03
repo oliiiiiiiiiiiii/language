@@ -1,8 +1,8 @@
 from sly import Parser
-from .swas_lexer import SwasLexer
+from .sio_lexer import sioLexer
 
-class SwasParser(Parser):
-    tokens = SwasLexer.tokens
+class sioParser(Parser):
+    tokens = sioLexer.tokens
     #debugfile = "log.out"
     precedence = (
         ('right', COLON),

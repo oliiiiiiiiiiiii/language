@@ -1,7 +1,7 @@
 
 from sly import Lexer
 
-class SwasLexer(Lexer):
+class sioLexer(Lexer):
     tokens = { NAME, NUMBER, PLUS, TIMES, MINUS, DIVIDE, MOD, POW, ARROW, LPAREN, RPAREN,
                IF, ELIF, ELSE, WHILE, DO, BREAK, STRING, PRINT, INPUT, INC, DEC, EQ, GT, GTE, LT, LTE, NE, PASS,
                LBRAC, RBRAC, OR, AND, COMMA}

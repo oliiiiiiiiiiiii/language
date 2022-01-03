@@ -17,12 +17,12 @@ class handler(BaseHTTPRequestHandler):
             )
         code = code_params[0]
 
-        tmpfile = "/tmp/" + str(uuid.uuid1())[:12] + ".swas"
+        tmpfile = "/tmp/" + str(uuid.uuid1())[:12] + ".sio"
         with open(tmpfile, "w") as f:
             f.write(code)
 
         process = subprocess.Popen(
-            ["python", "-m", "swas", tmpfile],
+            ["python", "-m", "sio", tmpfile],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
         )

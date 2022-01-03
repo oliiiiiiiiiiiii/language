@@ -1,5 +1,5 @@
-from .swas_lexer import SwasLexer
-from .swas_parser import SwasParser
+from .sio_lexer import sioLexer
+from .sio_parser import sioParser
 
 VERSION = "1.8.3"
 
@@ -10,14 +10,14 @@ def get_obj_type(_obj):
 
 def evaluate(tree):
     global names
-    undefined = "Swas says: {0} hasn't been defined!"
-    type_error = "Swas says: You can't use '{op}' with types '{obj1}' and '{obj2}'!"
-    single_te = "Swas says: You can't use '{op}' with type '{obj}'!"
+    undefined = "sio says: {0} hasn't been defined!"
+    type_error = "sio says: You can't use '{op}' with types '{obj1}' and '{obj2}'!"
+    single_te = "sio says: You can't use '{op}' with type '{obj}'!"
 
     try:
         rule = tree[0]
     except TypeError:
-        return print("Swas says: Error!!")
+        return print("sio says: Error!!")
 
     if rule == 'main':
         evaluate(tree[1])
@@ -104,7 +104,7 @@ def evaluate(tree):
         try:        
             oldval = names[tree[1]]
         except KeyError:
-            return print(f"Swas says: {name} hasn't been defined!")        
+            return print(f"sio says: {name} hasn't been defined!")        
         newval = oldval + 1
         
         names[name] = newval
@@ -145,7 +145,7 @@ def evaluate(tree):
         try:
             return op[index]
         except IndexError as e:
-            print(f'Swas says: {e}')
+            print(f'sio says: {e}')
         except TypeError as e:
             print(f'Says says: Only lists and strings can be indexed')
     elif rule == 'paren':
@@ -191,18 +191,18 @@ class Break:
     pass
 
 def execute(text):
-    lexer = SwasLexer()
-    parser = SwasParser()
+    lexer = sioLexer()
+    parser = sioParser()
     tree = parser.parse(lexer.tokenize(text))
     evaluate(tree)
 
 def shell():
-    lexer = SwasLexer()
-    parser = SwasParser()
-    print(f"Swas {VERSION}")
+    lexer = sioLexer()
+    parser = sioParser()
+    print(f"sio {VERSION}")
     while True:
         try:
-            text = input('swas > ')
+            text = input('sio > ')
         except EOFError:
             break
         tree = parser.parse(lexer.tokenize(text))

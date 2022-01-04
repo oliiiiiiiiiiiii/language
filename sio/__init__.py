@@ -1,5 +1,3 @@
 __author__ = "sio.py"
 __title__ = "sio"
-__license__ = "MIT"
-__copyright__ = "Copyright 2021 sio.py"
-__version__ = "1.8.3"
+__version__ = "0.0.1"

@@ -1,3 +1,4 @@
+from colorama import Fore
 from .sio_lexer import sioLexer
 from .sio_parser import sioParser
 
@@ -10,14 +11,14 @@ def get_obj_type(_obj):
 
 def evaluate(tree):
     global names
-    undefined = "{0} hasn't been defined!"
-    type_error = "You can't use '{op}' with types '{obj1}' and '{obj2}'!"
-    single_te = "You can't use '{op}' with type '{obj}'!"
+    undefined = Fore.RED + "{0} hasn't been defined!"
+    type_error = Fore.RED + "You can't use '{op}' with types '{obj1}' and '{obj2}'!"
+    single_te = Fore.RED + "You can't use '{op}' with type '{obj}'!"
 
     try:
         rule = tree[0]
     except TypeError:
-        return print("Error!!")
+        return print(Fore.RED + "Error!!")
 
     if rule == 'main':
         evaluate(tree[1])
@@ -104,7 +105,7 @@ def evaluate(tree):
         try:        
             oldval = names[tree[1]]
         except KeyError:
-            return print(f"sio says: {name} hasn't been defined!")        
+            return print(f"{name} hasn't been defined!")        
         newval = oldval + 1
         
         names[name] = newval
@@ -147,7 +148,7 @@ def evaluate(tree):
         except IndexError as e:
             print(f'sio says: {e}')
         except TypeError as e:
-            print(f'Says says: Only lists and strings can be indexed')
+            print(f'Only lists and strings can be indexed')
     elif rule == 'paren':
         return evaluate(tree[1])
     elif rule == 'pass':
@@ -203,7 +204,7 @@ def shell():
     line = 1
     while True:
         try:
-            text = input(f'In[{line}] ')
+            text = input(f'In[{line}]: ')
         except EOFError:
             break
         line += 1

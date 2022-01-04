@@ -1,7 +1,7 @@
 from .sio_lexer import sioLexer
 from .sio_parser import sioParser
 
-VERSION = "1.8.3"
+VERSION = "0.0.1"
 
 names = {}
 
@@ -10,14 +10,14 @@ def get_obj_type(_obj):
 
 def evaluate(tree):
     global names
-    undefined = "sio says: {0} hasn't been defined!"
-    type_error = "sio says: You can't use '{op}' with types '{obj1}' and '{obj2}'!"
-    single_te = "sio says: You can't use '{op}' with type '{obj}'!"
+    undefined = "{0} hasn't been defined!"
+    type_error = "You can't use '{op}' with types '{obj1}' and '{obj2}'!"
+    single_te = "You can't use '{op}' with type '{obj}'!"
 
     try:
         rule = tree[0]
     except TypeError:
-        return print("sio says: Error!!")
+        return print("Error!!")
 
     if rule == 'main':
         evaluate(tree[1])
@@ -200,11 +200,13 @@ def shell():
     lexer = sioLexer()
     parser = sioParser()
     print(f"sio {VERSION}")
+    line = 1
     while True:
         try:
-            text = input('sio > ')
+            text = input(f'In[{line}] ')
         except EOFError:
             break
+        line += 1
         tree = parser.parse(lexer.tokenize(text))
         evaluate(tree)
 

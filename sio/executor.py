@@ -105,7 +105,7 @@ def evaluate(tree):
         try:        
             oldval = names[tree[1]]
         except KeyError:
-            return print(f"{name} hasn't been defined!")        
+            return print(f"{Fore.RED}{name} hasn't been defined!")        
         newval = oldval + 1
         
         names[name] = newval
@@ -146,9 +146,9 @@ def evaluate(tree):
         try:
             return op[index]
         except IndexError as e:
-            print(f'sio says: {e}')
+            print(f'{Fore.RED}{e}')
         except TypeError as e:
-            print(f'Only lists and strings can be indexed')
+            print(f'{Fore.RED}Only lists and strings can be indexed')
     elif rule == 'paren':
         return evaluate(tree[1])
     elif rule == 'pass':
@@ -204,7 +204,7 @@ def shell():
     line = 1
     while True:
         try:
-            text = input(f'In[{line}]: ')
+            text = input(f'{Fore.WHITE}In[{line}]: ')
         except EOFError:
             break
         line += 1
